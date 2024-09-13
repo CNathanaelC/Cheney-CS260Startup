@@ -1,28 +1,16 @@
 # Travel Guide Analog Horror
 
-## Speciication Deliverable
+## Specification Deliverable
 ### Elevator Pitch
-Travel websites are like cookie cutters of one another. While this website will superficially fit into this mold, there is more to it than is initially seen. As you explore the pages0 and vicariously capture the spirit of Washington State, you'll gradually uncover the secrets of a mysterious lake that the travel blogger is drawn to. With interactive maps, interesting blog posts, and local tales of the supernatural, this immersive experience will have you questioning reality as you dive beneath the surface.
+Travel websites are like cookie cutters of one another. While this website will superficially fit into this mold, there is more to it than is initially seen. As you explore the pages and vicariously capture the spirit of Washington State, you'll gradually uncover the secrets of a mysterious lake that the travel blogger is drawn to. With interactive maps, interesting blog posts, and local tales of the supernatural, this immersive experience will have you questioning reality as you dive beneath the surface.
 
 ### Design
-
+THIS IMAGE SUCKS REPLACE
 ![Concept design for startup travel blog/horror website](startup_home.png)
 
 ### Sequence Diagram
+TODO::
 
-```sequenceDiagram
-    actor User
-    User->>Server: Request homepage
-    Server-->>User: Display homepage with lake overview
-    User->>Server: Click on destination page
-    Server-->>User: Display detailed destination info with hidden eerie elements
-    User->>Server: Click on blog section
-    Server-->>User: Display blog with author's journal entries
-    User->>Server: Browse photo gallery
-    Server-->>User: Display photos with anomalies
-    User->>Server: Sign up for newsletter
-    Server-->>User: Send cryptic newsletters
-```
 
 ### Key Features
 - Interactive Map
@@ -51,4 +39,3 @@ Travel websites are like cookie cutters of one another. While this website will 
 - **Authentication** - user accounts to participate in user interactions
 - **Database Data** - Content, including user added comments will be kept in perpetuity.
 - **WebSocket** - real time updates for user interactions, weather information, and blog posts.
-
