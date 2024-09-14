@@ -9,7 +9,21 @@ THIS IMAGE SUCKS REPLACE
 ![Concept design for startup travel blog/horror website](startup_home.png)
 
 ### Sequence Diagram
-TODO::
+Here is a sequence diagram to show how users might interact with the website especially considering comments:
+
+```mermaid
+sequenceDiagram
+    actor Saga
+    actor Jaakko
+    actor Ilmo
+    Saga->>Server: Saga comments on blog post
+    Jaakko->>Server: Jaakko comments on Saga's comment
+    Server -->>Saga: Saga is notified of Jaakko's comment
+    Ilmo->>Server: Ilmo comments on Jaakko's comment
+    Server -->>Jaakko: Jaakko is notified of Ilmo's comment
+    Jaakko->>Server: Jaakko replies to Ilmo's comment
+    Server -->>Ilmo: Ilmo is notified of Jaakko's comment
+```
 
 
 ### Key Features
