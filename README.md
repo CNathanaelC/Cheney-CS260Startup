@@ -5,8 +5,7 @@
 Travel websites are like cookie cutters of one another. While this website will superficially fit into this mold, there is more to it than is initially seen. As you explore the pages and vicariously capture the spirit of Washington State, you'll gradually uncover the secrets of a mysterious lake that the travel blogger is drawn to. With interactive maps, interesting blog posts, and local tales of the supernatural, this immersive experience will have you questioning reality as you dive beneath the surface.
 
 ### Design
-THIS IMAGE SUCKS REPLACE
-![Concept design for startup travel blog/horror website](homepage.png)
+![Concept design for website](homepage.png)
 
 ### Sequence Diagram
 Here is a sequence diagram to show how users might interact with the website especially considering comments:
