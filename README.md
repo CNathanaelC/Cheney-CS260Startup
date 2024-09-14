@@ -6,7 +6,7 @@ Travel websites are like cookie cutters of one another. While this website will 
 
 ### Design
 THIS IMAGE SUCKS REPLACE
-![Concept design for startup travel blog/horror website](startup_home.png)
+![Concept design for startup travel blog/horror website](homepage.png)
 
 ### Sequence Diagram
 Here is a sequence diagram to show how users might interact with the website especially considering comments:
@@ -32,7 +32,7 @@ sequenceDiagram
 - Blogger Journal
 - Photo and video gallery
 - Local Folklore
-- real-time updates
+- Real-time updates
 - User comments and discussions on each section (with admin control)
 - Newsletter Sign-up
 - Analog Horror Integration (includes popups, changes in style, photo gallery lightbox, progressive change as user continues to interact with the website)
