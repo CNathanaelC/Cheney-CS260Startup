@@ -17,4 +17,7 @@ vi file extension
 *ESC* to exit insert mode
 :wq
 
+Quick link tutorial
+href="#id"
+id = "id"
 
