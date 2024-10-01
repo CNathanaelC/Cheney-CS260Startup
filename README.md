@@ -5,7 +5,7 @@
 Travel websites are like cookie cutters of one another. While this website will superficially fit into this mold, there is more to it than is initially seen. As you explore the pages and vicariously capture the spirit of Washington State, you'll gradually uncover the secrets of a mysterious lake that the travel blogger is drawn to. With interactive maps, interesting blog posts, and local tales of the supernatural, this immersive experience will have you questioning reality as you dive beneath the surface.
 
 ### Design
-![Concept design for website](homepage.png)
+![Concept design for website](images/homepage.png)
 
 ### Sequence Diagram
 Here is a sequence diagram to show how users might interact with the website especially considering comments:
@@ -52,3 +52,6 @@ sequenceDiagram
 - **Authentication** - user accounts to participate in user interactions
 - **Database Data** - Content, including user added comments will be kept in perpetuity.
 - **WebSocket** - real time updates for user interactions, weather information, and blog posts.
+
+### HTML Deliverable
+With this html deliverable, I added the basic structure of my website with home, destinations, gallery, folklore, blog, and login pages. I added content(images, destinations, folklore, and a filler blog post) to each of these pages and tried to implement as much as I could to the best of my ability. As I implement CSS and other technologies I expect for this structure to shift as I further flesh out the website.

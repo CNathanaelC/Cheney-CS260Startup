@@ -60,6 +60,7 @@
                 <li>Take a boat tour with Lady of the Lake</li>
                 <li>Hike the Chelan Butte Trail</li>
                 <li>Enjoy Water Activities at Slidewaters</li>
+                <li><a href="https://www.lakechelan.com/">Learn More</a></li>
             </div>
             <div>
                 <h3 id = "SanJuanQL">Conquer the San Juan Islands</h3>
@@ -76,6 +77,7 @@
                 <li>Visit Lime Kiln Point State Park</li>
                 <li>Kayak through the Islands</li>
                 <li>Discover the Whale Museum</li>
+                <li><a href="https://www.visitsanjuans.com/">Learn More</a></li>
             </div>
             <div> 
                 <h3 id="OlympicNPQL">Explore the Wonders of Olympic National Park</h3> 
@@ -91,6 +93,7 @@
                 <li>Explore the tide pools at Rialto Beach</li>
                 <li>Drive up to Hurricane Ridge for stunning views</li>
                 <li>Camp at Kalaloch Campground</li>
+                <li><a href="https://www.nps.gov/olym/planyourvisit/index.htm">Learn More</a></li>
             </div>
 
             <div> 
@@ -106,6 +109,7 @@
                 <li>Take a scenic drive on the Stevens Canyon Road</li>
                 <li>Explore the Grove of the Patriarchs</li>
                 <li>Go snowshoeing in winter</li>
+                <li><a href="https://www.nps.gov/mora/index.htm">Learn More</a></li>
             </div>
 
             <div> 
@@ -121,6 +125,7 @@
                 <li>Visit the Leavenworth Reindeer Farm</li>
                 <li>Shop and dine in the Bavarian Village</li>
                 <li>Go white-water rafting on the Wenatchee River</li>
+                <li><a href="https://leavenworth.org/">Learn More</a></li>
             </div>
 
             <div> 
@@ -136,6 +141,7 @@
                 <li>Explore the Ross Lake National Recreation Area</li>
                 <li>Take a scenic drive on the North Cascades Highway</li>
                 <li>Camp at Colonial Creek Campground</li>
+                <li><a href="https://www.nps.gov/noca/index.htm">Learn More</a></li>
             </div>
 
             <div>
@@ -151,6 +157,7 @@
                 <li>Wander through the Chihuly Garden and Glass</li>
                 <li>Take a ferry ride to Bainbridge Island</li>
                 <li>Discover the Museum of Pop Culture</li>
+                <li><a href="https://visitseattle.org/">Learn More</a></li>
             </div>
             <div></div>
                 <h3 id="Lake****QL">Lake [REDACTED]...Coming Soon</h3>
@@ -165,7 +172,51 @@
                 <li>[REDACTED]</li>
                 <li>[REDACTED]</li>
                 <li>[REDACTED]</li>
+                <li><a href="">Learn More</a></li>
             </div>
         </main>
     </body>
 </html>
+.glitch {
+    position: relative;
+    color: white;
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(44px, 450px, 56px, 0);
+    }
+    50% {
+        clip: rect(24px, 450px, 76px, 0);
+    }
+    100% {
+        clip: rect(44px, 450px, 56px, 0);
+    }
+}
