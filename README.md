@@ -55,3 +55,36 @@ sequenceDiagram
 
 ### HTML Deliverable
 With this html deliverable, I added the basic structure of my website with home, destinations, gallery, folklore, blog, and login pages. I added content(images, destinations, folklore, and a filler blog post) to each of these pages and tried to implement as much as I could to the best of my ability. As I implement CSS and other technologies I expect for this structure to shift as I further flesh out the website.
+
+#### Placeholders Placed
+- **Index.html**:
+    - logged in placeholder
+    - single picture representing a carousel
+- **Destinations.html**:
+    - 
+- **Folklore.html**:
+    - 3rd party calls for local weather information
+- **Gallery.html**:
+    - 
+- **Blog.html**:
+    - Button placeholders for liking and commenting on blogs
+    - Websocket communication will take place as comments are liked and comments reply to comments
+- **Login.html**:
+    - Login basic structure
+
+### CSS Deliverable
+
+
+#### Placeholders Placed
+- **Index.html**:
+    - 
+- **Destinations.html**:
+    - 
+- **Folklore.html**:
+    - 
+- **Gallery.html**:
+    - 
+- **Blog.html**:
+    - 
+- **Login.html**:
+    - 
