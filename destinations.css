@@ -1,0 +1,70 @@
+
+.glitch {
+    position: relative;
+    text-shadow: 0.05em 0 0 #ff0000bf,
+    -0.025em -.05em 0 rgba(0, 255, 0, .75),
+    0.025em 0 0 rgba(0, 0, 255, 0.75);
+    animation: glitch 400ms infinite;
+    animation: text_shift 3s infinite;
+}
+  
+  @keyframes text_shift {
+    0% {
+      content: "asd;flkasdj;lfk";
+    }
+    14% {
+      content: "asd;flkj;flkajs;dlfk";
+    }
+    15% {
+      content: "asd;flkasdj;fljs;dlfk";
+    }
+    49% {
+      content: "asd;flflkajs;dlfk";
+    }
+    50% {
+      content: "asd;lkajs;dlfk";
+    }
+    99% {
+      content: "asd;flkkajs;dlfk";
+    }
+    100% {
+      content: "kasdj;flkajs;dlfk";
+    }
+  }
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    14% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    15% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    50% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    99% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+    100% {
+      text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+        -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+  }
+  
+  /* https://codepen.io/kevinpowell/pen/YzqerQm */
