@@ -61,11 +61,11 @@ With this html deliverable, I added the basic structure of my website with home,
     - logged in placeholder
     - single picture representing a carousel
 - **Destinations.html**:
-    - 
-- **Folklore.html**:
     - 3rd party calls for local weather information
+- **Folklore.html**:
+    - N/A
 - **Gallery.html**:
-    - 
+    - add expand image on click and implement more effects for images
 - **Blog.html**:
     - Button placeholders for liking and commenting on blogs
     - Websocket communication will take place as comments are liked and comments reply to comments
@@ -74,3 +74,26 @@ With this html deliverable, I added the basic structure of my website with home,
 
 ### CSS Deliverable
 With this css deliverable, I added several stylized elements including background, font change, and animation effects. I attempted to properly stylize each element (header, footer, main content, navigation, application elements, and application images and text) so that it would fit the aesthetic.
+#### Aspects Changed
+- **All htmls**:
+    - background color implementation
+    - font-family implementation
+    - button stylization
+    - dynamic resizing
+    - hyperlink stylization
+    - footer added and stylized
+    - Spacing issues resolved
+    - Bootstrap implementation
+- **Index.html**:
+    - Text-image overlay
+- **Destinations.html**:
+    - glitch animation for relevant words
+- **Folklore.html**:
+    - glitch animation for relevant words
+- **Gallery.html**:
+    - pop-out animation on hover
+    - image size and border standardization
+- **Blog.html**:
+    - Button stylization
+- **Login.html**:
+    - button stylization
