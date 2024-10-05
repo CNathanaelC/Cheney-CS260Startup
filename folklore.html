@@ -1,91 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Local Legends and Folklore</title>
-    </head>
-    <body>
-        <!-- Use header, main, and footer elements to give semantic structure -->
-        <header>
-            <center>
-                <h1>The Washington Guide</h1>
-            </center>
 
-            <!-- Navigation elements -->
-            <nav>
-                <div>
-                    <span>
-                        <center>
-                            <a href="index.html">Home</a>
-                            <a href="destinations.html">Destinations</a>
-                            <a href="gallery.html">Gallery</a>
-                            <a href="folklore.html">Folklore</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="login.html">Login</a>
-                        </center>
-                    </span>
-                </div>
-            </nav>
-        </header>
+<head>
+    <meta charset="UTF-8" />
+    <title>Local Legends and Folklore</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-        <main>
-            <div>
-                <center>
-                    <h1>Folklore</h1>
-                    <!--Put a bigfoot picture right here-->
-                    <img src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1348,w_2400,x_0,y_140/v1579882348/shape/mentalfloss/gettyimages-1196107442.jpg?itok=u0mrGNkU" alt="SasquatchSightings" height="400">
+<body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+        <center>
+            <h1>The Washington Guide</h1>
+        </center>
 
-                    <p>
-                        
-                    </p>
-                </center>
-                <h3>Quick Links</h3>
-                <li><a href="#SasquatchQL">Sasquatch</a></li>
-                <li><a href="#GhostsQL">Ghost's of Pike's Place</a></li>
-                <li><a href="#DragonQL">The Lake Chelan Dragon</a></li>
-                <li><a href="#CultQL">The [REDACTED] Cult</a></li>
-                <li><a href="">More to be added soon</a></li>
-            </div>
+        <!-- Navigation elements -->
+        <nav>
             <div>
-                <h3 id = "SasquatchQL">Sasquatch</h3>
-                <p>
-                    Everyone knows Sasquatch or Bigfoot and its many derivatives around the globe.
-                    While everyone is familiar with its large humanoid apelike appearence not all know
-                    that Washington has had the most reported sightings of any state.
-                </p>
-                <a href="https://www.bfro.net/">Learn more</a>
+                <span>
+                    <center>
+                        <button><a href="index.html">Home</a></button>
+                        <button><a href="destinations.html">Destinations</a></button>
+                        <button><a href="gallery.html">Gallery</a></button>
+                        <button><a href="folklore.html">Folklore</a></button>
+                        <button><a href="blog.html">Blog</a></button>
+                        <!--This is a placeholder button, display username when logged in. Clicking on it then will result in logging out-->
+                        <button><a href="login.html">Login</a></button>
+                    </center>
+                </span>
             </div>
-            <div>
-                <h3 id = "GhostsQL">Ghosts of Pike's Place</h3>
-                <p>
-                    There is a ramp that is part of the original building where boys would run back and 
-                    forth as they would work at the stables, it is believed that this area is still haunted
-                    by quite a few of them. Some sightings have stated that they have seen a boy that stands
-                    in their shop, wearing a white shirt and a black vest. In addition, he has no eyes.
-                </p>
-                <a href="https://seattlerefined.com/lifestyle/pike-place-market-is-haunted-ghost-stories-with-author-mercedes-carrabba?photo=1">Learn more</a>
+        </nav>
+    </header>
+
+    <main>
+        <div>
+            <div class="container">
+                <h1 class="upper_centered_text">Folklore</h1>
+                <img src="https://images2.minutemediacdn.com/image/upload/c_crop,h_1348,w_2400,x_0,y_140/v1579882348/shape/mentalfloss/gettyimages-1196107442.jpg?itok=u0mrGNkU"
+                    alt="SasquatchSightings" style="width: 100%;">
             </div>
-            <div>
-                <h3 id = "DragonQL">The Lake Chelan Dragon</h3>
-                <p>
-                    Lake Chelan is the deepest known lake in Washington state and the third deepest
-                    in the United States as a whole. Reaching as far back as 1812, reports of a giant
-                    winged lizard was rumored to make its lair at the lake and to cause general havoc.
-                </p>
-                <a href="https://mvlresort.com/2020/09/01/legend-of-the-dragon-of-lake-chelan/">Learn more</a>
-            </div>
-            <div>
-                <h3 id = "CultQL">The [REDACTED] Cult</h3>
-                <p>
-                    In the early 1900's this cult was reportedly operating in the [REDACTED] region of Washington state.
-                    After multiple drowning cases that were originally ruled as accidents or suicides, it came to light that 
-                    a religious cult was responsible. As several members of the cult were found out and arrested, the rest of
-                    the members of the cult met at [REDACTED] Lake on Midsummer and drowned themselves. Extensive information regarding their
-                    beliefs or motives for the murders was never ascertained, but it is rumored that they believed that they
-                    were to bring the victims to their god.
-                </p>
-                <a href="thelake.html">Learn more</a>
-            </div>
-        </main>
-    </body>
+
+            <h3>Quick Links</h3>
+            <li><a href="#SasquatchQL">Sasquatch</a></li>
+            <li><a href="#GhostsQL">Ghost's of Pike's Place</a></li>
+            <li><a href="#DragonQL">The Lake Chelan Dragon</a></li>
+            <li><a href="#CultQL" class="glitch">The Skulchon Cult</a></li>
+            <li><a href="">More to be added soon</a></li>
+        </div>
+        <div>
+            <h3 id="SasquatchQL">Sasquatch</h3>
+            <p>
+                Everyone knows Sasquatch or Bigfoot and its many derivatives around the globe.
+                While everyone is familiar with its large humanoid apelike appearence not all know
+                that Washington has had the most reported sightings of any state.
+            </p>
+            <a href="https://www.bfro.net/">Learn more</a>
+        </div>
+        <div>
+            <h3 id="GhostsQL">Ghosts of Pike's Place</h3>
+            <p>
+                There is a ramp that is part of the original building where boys would run back and
+                forth as they would work at the stables, it is believed that this area is still haunted
+                by quite a few of them. Some sightings have stated that they have seen a boy that stands
+                in their shop, wearing a white shirt and a black vest. In addition, he has no eyes.
+            </p>
+            <a
+                href="https://seattlerefined.com/lifestyle/pike-place-market-is-haunted-ghost-stories-with-author-mercedes-carrabba?photo=1">Learn
+                more</a>
+        </div>
+        <div>
+            <h3 id="DragonQL">The Lake Chelan Dragon</h3>
+            <p>
+                Lake Chelan is the deepest known lake in Washington state and the third deepest
+                in the United States as a whole. Reaching as far back as 1812, reports of a giant
+                winged lizard was rumored to make its lair at the lake and to cause general havoc.
+            </p>
+            <a href="https://mvlresort.com/2020/09/01/legend-of-the-dragon-of-lake-chelan/">Learn more</a>
+        </div>
+        <div>
+            <h3 id="CultQL" class="glitch">The Skulchon Cult</h3>
+            <p>
+                In the early 1900's this cult was reportedly operating near the North Cascades region of Washington
+                state.
+                After multiple drowning cases that were originally ruled as accidents or suicides, it came to light that
+                a religious cult was responsible. As several members of the cult were found out and arrested, the rest
+                of
+                the members of the cult met at Skulchon Lake on Midsummer and drowned themselves. Extensive
+                information regarding their
+                beliefs or motives for the murders was never ascertained, but it is rumored that they believed that they
+                were to bring the victims to their god.
+            </p>
+            <a href="thelake.html" class="glitch">Learn more</a>
+        </div>
+    </main>
+</body>
+
 </html>

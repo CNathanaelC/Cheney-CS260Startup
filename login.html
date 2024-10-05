@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>User Login</title>
-    </head>
-    <body>
-        <!-- Use header, main, and footer elements to give semantic structure -->
-        <header>
-            <center>
-                <h1>The Washington Guide</h1>
-            </center>
 
-            <!-- Navigation elements -->
-            <nav>
+<head>
+    <meta charset="UTF-8" />
+    <title>User Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+        <center>
+            <h1>The Washington Guide</h1>
+        </center>
+
+        <!-- Navigation elements -->
+        <nav>
+            <div>
+                <span>
+                    <center>
+                        <button><a href="index.html">Home</a></button>
+                        <button><a href="destinations.html">Destinations</a></button>
+                        <button><a href="gallery.html">Gallery</a></button>
+                        <button><a href="folklore.html">Folklore</a></button>
+                        <button><a href="blog.html">Blog</a></button>
+                        <!--This is a placeholder button, display username when logged in. Clicking on it then will result in logging out-->
+                        <button><a href="login.html">Login</a></button>
+                    </center>
+                </span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <center>
+            <h2>Login</h2>
+            <form method="get" action="play.html">
                 <div>
-                    <span>
-                        <center>
-                            <a href="index.html">Home</a>
-                            <a href="destinations.html">Destinations</a>
-                            <a href="gallery.html">Gallery</a>
-                            <a href="folklore.html">Folklore</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="login.html">Login</a>
-                        </center>
-                    </span>
+                    <span>Username:</span>
+                    <input type="text" placeholder="username" />
                 </div>
-            </nav>
-        </header>
+                <div>
+                    <span>Password:</span>
+                    <input type="password" placeholder="password" />
+                </div>
+                <button type="submit">Login</button>
+                <button type="submit">Create</button>
+            </form>
+        </center>
 
-        <main>
-            <center>
-                <h2>Login</h2>
-                <form method="get" action="play.html">
-                    <div>
-                        <span>Username:</span>
-                        <input type="text" placeholder="username" />
-                    </div>
-                    <div>
-                        <span>Password:</span>
-                        <input type="password" placeholder="password" />
-                    </div>
-                    <button type="submit">Login</button>
-                    <button type="submit">Create</button>
-                </form>
-            </center>
-            
-        </main>
-    </body>
+    </main>
+</body>
+
 </html>

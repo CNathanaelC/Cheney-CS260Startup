@@ -1,57 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>The Washington Guide</title>
-    </head>
-    <body>
-        <!-- Use header, main, and footer elements to give semantic structure -->
-        <header>
-            <center>
-                <h1>The Washington Guide</h1>
-            </center>
 
-            <!-- Navigation elements -->
-            <nav>
-                <div>
-                    <span>
-                        <center>
-                            <a href="index.html">Home</a>
-                            <a href="destinations.html">Destinations</a>
-                            <a href="gallery.html">Gallery</a>
-                            <a href="folklore.html">Folklore</a>
-                            <a href="blog.html">Blog</a>
-                            <a href="login.html">Login</a>
-                            <!--This is a placeholder for display of username-->
-                            <a>Logged in as: PlaceholderUsername</a>
-                        </center>
-                    </span>
-                </div>
-            </nav>
-        </header>
+<head>
+    <meta charset="UTF-8" />
+    <title>The Washington Guide</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
-        <main>
-            <center>
-                <h1>Welcome to the Pacific Northwest</h1>
-                <div>
-                    <!--this image is a placeholder for a carousel for each html page-->
-                    <img src="images/home.jpg" alt="home.jpg" height="400">
-                    <p>Hidden among ancient forests and volcanic peaks, Washington State is a top tier
-                        destination for nature lovers and city folk alike. Whether you're searching
-                        for the solitude of forests or the quaint allure of a small town, Washington
-                        has something for everyone!
-                    </p>
-                </div>
-            </center>
+<body>
+    <!-- Use header, main, and footer elements to give semantic structure -->
+    <header>
+        <center>
+            <h1>The Washington Guide</h1>
+        </center>
+
+        <!-- Navigation elements -->
+        <nav>
             <div>
-                <p>
-                    Thanks for visiting my website! Feel free to explore
-                    the various featured destinations in the destinations
-                    tab, local stories in the folklore section, landscapes
-                    in the gallery, and some of my experiences in the blog.
-                    <a href="https://github.com/CNathanaelC/Cheney-CS260Startup">More about my project</a>
-                </p>
+                <span>
+                    <center>
+                        <button><a href="index.html">Home</a></button>
+                        <button><a href="destinations.html">Destinations</a></button>
+                        <button><a href="gallery.html">Gallery</a></button>
+                        <button><a href="folklore.html">Folklore</a></button>
+                        <button><a href="blog.html">Blog</a></button>
+                        <!--This is a placeholder button, display username when logged in. Clicking on it then will result in logging out-->
+                        <button><a href="login.html">Login</a></button>
+                    </center>
+                </span>
             </div>
-        </main>
-    </body>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="upper_centered_text">Welcome to the Pacific Northwest</h1>
+            <!-- this image is a placeholder for a carousel for each html page -->
+            <img src="images/foggyboardwalk.jpg" alt="foggyboardwalk.jpg" style="width: 100%">
+            <div class="lower_centered_text">
+                Hidden among ancient forests and volcanic peaks, Washington State is a top tier
+                destination for nature lovers and city folk alike. Whether you're searching
+                for the solitude of forests or the quaint allure of a small town, Washington
+                has something for everyone!
+            </div>
+        </div>
+        <div>
+            <p>
+                Thanks for visiting my website! Feel free to explore
+                the various featured destinations in the destinations
+                tab, local stories in the folklore section, landscapes
+                in the gallery, and some of my experiences in the blog.
+            </p>
+        </div>
+        <footer>
+            <div>
+                <a href="https://github.com/CNathanaelC/Cheney-CS260Startup">More about my project</a>
+            </div>
+        </footer>
+    </main>
+</body>
+
 </html>

@@ -21,3 +21,5 @@ Quick link tutorial
 href="#id"
 id = "id"
 
+What I wanted to do with text changing is less with CSS animation than it is with javascript
+

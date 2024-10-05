@@ -73,18 +73,4 @@ With this html deliverable, I added the basic structure of my website with home,
     - Login basic structure
 
 ### CSS Deliverable
-
-
-#### Placeholders Placed
-- **Index.html**:
-    - 
-- **Destinations.html**:
-    - 
-- **Folklore.html**:
-    - 
-- **Gallery.html**:
-    - 
-- **Blog.html**:
-    - 
-- **Login.html**:
-    - 
+With this css deliverable, I added several stylized elements including background, font change, and animation effects. I attempted to properly stylize each element (header, footer, main content, navigation, application elements, and application images and text) so that it would fit the aesthetic.
