@@ -269,11 +269,7 @@ This declares the document type to be HTML5¹.
   }
   ```¹.
 
-### 22. What is the correct syntax for creating
-
-Sure, let's go through each of these questions with detailed explanations and examples where necessary.
-
-### 23. What is the correct syntax for creating a JavaScript object?
+### 22. What is the correct syntax for creating a JavaScript object?
 You can create a JavaScript object using an object literal or the `new Object()` syntax.
 
 #### Object Literal:
@@ -296,7 +292,7 @@ person.eyeColor = "blue";
 ```
 The object literal syntax is more concise and commonly used¹².
 
-### 24. Is it possible to add new properties to JavaScript objects?
+### 23. Is it possible to add new properties to JavaScript objects?
 Yes, you can add new properties to JavaScript objects using dot notation or bracket notation.
 
 #### Example:
@@ -314,7 +310,7 @@ person["eyeColor"] = "blue";
 ```
 Both methods will add the new properties to the `person` object⁶⁷.
 
-### 25. If you want to include JavaScript on an HTML page, which tag do you use?
+### 24. If you want to include JavaScript on an HTML page, which tag do you use?
 You use the `<script>` tag to include JavaScript in an HTML page. The `<script>` tag can be placed in the `<head>` or `<body>` section of the HTML document.
 
 #### Example:
