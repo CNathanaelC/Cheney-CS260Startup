@@ -57,6 +57,7 @@ footer {
 }
 
 #background_video {
+    background-color: white;
     position: fixed;
     right: 0;
     bottom: 0;

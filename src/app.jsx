@@ -243,8 +243,8 @@ export function Gallery() {
 };
 
 export function Blog() {
-  function open_textbox() {
-    var textboxcontainer = document.getElementById('textbox_container');
+  function open_textbox(reveal_id) {
+    var textboxcontainer = document.getElementById(reveal_id);
     if (textboxcontainer.classList.contains('hidden')) {
       textboxcontainer.classList.remove('hidden');
     } else {
@@ -268,9 +268,9 @@ export function Blog() {
           surrounding area once I do. Keep posted for updates
           which should be recurring in the coming weeks. Thanks for joining me on this journey!</p>
         <p>
-          <button id="open_comment_box" className="btn btn-primary" onClick={open_textbox}>Comment</button>
+          <button id="open_comment_box" className="btn btn-primary" onClick={() => open_textbox("tbcont1")}>Comment</button>
         </p>
-        <div id="textbox_container" class="hidden">
+        <div id="tbcont1" className="hidden">
           <textarea id="textbox" rows="4" cols="50"></textarea>
           <button className="btn btn-primary">Post</button>
         </div>
@@ -286,9 +286,9 @@ export function Blog() {
           out a couple more things.
         </p>
         <p>
-          <button className="btn btn-primary" onClick={open_textbox}>Comment</button>
+          <button className="btn btn-primary" onClick={() => open_textbox("tbcont2")}>Comment</button>
         </p>
-        <div id="textbox_container" class="hidden">
+        <div id="tbcont2" className="hidden">
           <textarea id="textbox" rows="4" cols="50"></textarea>
           <button className="btn btn-primary">Post</button>
         </div>
@@ -315,9 +315,9 @@ export function Blog() {
           as possible.
         </p>
         <p>
-          <button className="btn btn-primary" onClick={open_textbox}>Comment</button>
+          <button className="btn btn-primary" onClick={() => open_textbox("tbcont3")}>Comment</button>
         </p>
-        <div id="textbox_container" class="hidden">
+        <div id="tbcont3" className="hidden">
           <textarea id="textbox" rows="4" cols="50"></textarea>
           <button className="btn btn-primary">Post</button>
         </div>
@@ -663,6 +663,4 @@ export function Folklore() {
     </main>
   );
 }
-
-
 
