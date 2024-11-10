@@ -293,6 +293,35 @@ export function Blog() {
           <button className="btn btn-primary">Post</button>
         </div>
       </div>
+      <div>
+        <p>Posted: 6:33 PM, 11/9/2024</p>
+        <p>
+          Sorry, it's been a while since I last posted. This site is honestly barely functional, but it's a work in
+          progress that I want to continue to work on. Well, I finally traveled to Skulchon. In classic Washingtonian fashion,
+          the locals are hesitant to interact with others. Perhaps I'm being too harsh. I've had plenty of positive, friendly interactions
+          with people in Olympia, Bellevue, and Leavenworth. Although, the caution of Skulchon residents is understandable given their history.
+          It all goes back to the early 1900's, when about twenty people from their community got involved in a cult! I read a couple interviews
+          published in old editions of their local newspaper and most family members and friends of those who were part of the cult had no idea of
+          their involvement. Some members of the cult were even prominent parts of the community: the mayor, librarian, and several police officers.
+          The story goes, a series of drownings suddenly happening in a short span of time--these were all ruled as suicides/accidents. One officer,
+          John Salas wasn't having it. Single handedly, on the day of a prominent festival, Officer Salas confronted the cult. Little is known about
+          this, but the resulting conflict resulted in the death of all the people present. John Salas died of strangulation, his daughter, Matika Salas
+          died by suicide by gunshot, six of the cultists died by gunshot, and the other thirteen died by suicidal drowning. The earlier drownings were
+          pinned on the cult--determined to be as a result of some kind of brainwashing.
+        </p>
+        <p>
+          I know that was a lot of exposition, but I thought it was fascinating that such a small, obscure town has such a morbidly fascinating history. After
+          too much time spent at the library, I think I'm going to go on my adventure for the day: hiking Mount Shuulal. I'll be sure to update you all as soon
+          as possible.
+        </p>
+        <p>
+          <button className="btn btn-primary" onClick={open_textbox}>Comment</button>
+        </p>
+        <div id="textbox_container" class="hidden">
+          <textarea id="textbox" rows="4" cols="50"></textarea>
+          <button className="btn btn-primary">Post</button>
+        </div>
+      </div>
     </main>
   )
 };
