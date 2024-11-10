@@ -227,7 +227,7 @@ This changes the text color of the element with ID `byu` to green¹.
 ```html
 <!DOCTYPE html>
 ```
-This declares the document type to be HTML5¹.
+This declares the document type to be HTML5 and directs the browser to use relevant specifications when rendering the HTML.
 
 ### 21. What is valid JavaScript syntax for if, else, for, while, switch statements?
 #### Examples:
@@ -345,10 +345,12 @@ You can also link to an external JavaScript file using the `src` attribute:
 ```javascript
 document.getElementById("animal").textContent = "crow";
 ```
-This code selects the element with the ID `animal` and changes its text content to "crow"¹⁹[^20^].
+This code selects the element with the ID `animal` and changes its text content to "crow"[^20^].
 
 ### 26. Which of the following correctly describes JSON?
-JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate. It is based on a subset of JavaScript but is language-independent¹⁵¹⁶.
+JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write,
+and easy for machines to parse and generate. It is based on a subset of JavaScript but is language-independent. It is not equivalent to Javascipt objects.
+A server can use JSON to send data to a web browser. Comprised of attribute-value pairs.
 
 ### 27. What does the console command `chmod`, `pwd`, `cd`, `ls`, `vim`, `nano`, `mkdir`, `mv`, `rm`, `man`, `ssh`, `ps`, `wget`, `sudo` do?
 - **`chmod`**: Changes file permissions.
@@ -400,3 +402,31 @@ promise.then(result => {
 });
 ```
 This code will output "Success!" to the console¹.
+
+### 35 Given the following HTML, what CSS would you use to set the text "yes" to green and leave the "no" text unaffected?
+#### Example:
+````html
+<p>no</p>
+<p class="header">yes</p>
+````
+````css
+p.header { color:green; }
+````
+### 36 What would the following code output
+#### Example
+````javascript
+const p = new Promise((resolve, reject) => {
+  setTimeout(() => {
+     console.log('banana')
+     resolve(true);
+  }, 10000);
+});
+console.log('ski');
+
+p.then((result) => console.log('fish'));
+
+console.log('taco');
+````
+##### Answer:
+ski taco banana fish
+

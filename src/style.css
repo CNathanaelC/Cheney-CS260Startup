@@ -8,6 +8,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
@@ -37,8 +39,21 @@ a {
     border-color: rgb(0, 255, 0);
 }
 
+html,
+body {
+    height: 110%;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
 footer {
     background-color: black;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
 }
 
 #background_video {
