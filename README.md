@@ -97,3 +97,7 @@ With this css deliverable, I added several stylized elements including backgroun
     - Button stylization
 - **Login.html**:
     - button stylization
+
+### React Deliverable
+With this React deliverable, I converted all the html documents to JSX and made login and comments mimic functionality.
+There was a complete overhaul on the application structure. The application was bundled using Vite. React was fully implemented. I made it use a React router to access the different pages. Custom React Hooks to add the semi-functionality to comments and some random cryptic messages to the gallery. I would add more effects, but I currently lack the knowledge and time to do so.

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css";
@@ -203,8 +203,8 @@ export function Destinations() {
           I'll talk more about it on the blog. So keep tabs on that as I hopefully hype up this new destination!
         </p>
         <h4>Things to do in Skulchon</h4>
-        <li>Coming soon...</li>
-        <li>Coming soon...</li>
+        <li>Hike Mount Shuulal roundabout loop</li>
+        <li>Experience the Majesty of Kwoothuhl Falls</li>
         <li>Coming soon...</li>
         <li>Coming soon...</li>
         <li><a href="" className="glitch">Learn More</a></li>
@@ -213,34 +213,82 @@ export function Destinations() {
   )
 };
 
+
 export function Gallery() {
+  const messages = [
+    "Do you see it?",
+    "T’łəqʷəł qʷuʔəsɬ X̌əʔəɬ lives",
+    "The Lakebed Never Sleeps",
+    "T’łəqʷəł qʷuʔəsɬ X̌əʔəɬ lives",
+    "T’łəqʷəł qʷuʔəsɬ X̌əʔəɬ",
+    "Skulchon Lake",
+    "skʷəkʷə́l̓čn",
+    "skʷəkʷə́l̓čn ",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ];
+
+  const [hoverMessage, setHoverMessage] = useState("");
+
+  const handleMouseEnter = () => {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    const randomMessage = messages[randomIndex];
+    setHoverMessage(randomMessage);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverMessage("");
+  };
+
   return (
     <main>
       <div className="gallery-container">
         <center>
           <h1>Gallery</h1>
         </center>
-        {/* </div><!--Javascript on click open the image-->*/}
         {/*<!--sometimes the image will reveal secret messages-->*/}
         {/*<!--sometimes images not usually there will appear--> */}
         <div className="gallery">
-          <img src="images/home.jpg" alt="Home" />
-          <img src="images/beams.jpg" alt="Beams" />
-          <img src="images/frozenwater.jpg" alt="Frozen Water" />
-          <img src="images/clearreflection.jpg" alt="Clear Reflection" />
-          <img src="images/mistyoverlook.jpg" alt="Misty Overlook" />
-          <img src="images/mountaingoats1.jpg" alt="Mountain Goats" />
-          <img src="images/mountainlake.jpg" alt="Mountain Lake" />
-          <img src="images/passagewayup.jpg" alt="Passageway Up" />
-          <img src="images/riverrun.jpg" alt="River Run" />
-          <img src="images/riversunmountain.jpg" alt="River Sun Mountain" />
-          <img src="images/rockpeak.jpg" alt="Rock Peak" />
-          <img src="images/waterfall1.jpg" alt="Waterfall" />
+          {["home", "beams", "frozenwater", "clearreflection", "mistyoverlook", "mountaingoats1", "mountainlake", "passagewayup", "riverrun", "riversunmountain", "rockpeak", "waterfall1"].map((img, index) => (
+            <div
+              key={index}
+              className="image-container"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <img
+                src={`images/${img}.jpg`}
+                alt={img.charAt(0).toUpperCase() + img.slice(1).replace(/(\d+)/, ' $1')}
+                style={{ cursor: 'pointer' }}
+              />
+              {hoverMessage && (
+                <div className="hover-message">
+                  {hoverMessage}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </main>
   )
 };
+
 
 export function Blog() {
   function open_textbox(reveal_id) {
