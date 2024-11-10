@@ -244,14 +244,12 @@ export function Gallery() {
 
 export function Blog() {
   function open_textbox() {
-    document.getElementById('textbox').addEventListener('click', function () {
-      var textboxContainer = document.getElementById('textbox_container');
-      if (textboxContainer.classList.contains('hidden')) {
-        textboxContainer.classList.remove('hidden');
-      } else {
-        textboxContainer.classList.add('hidden');
-      }
-    })
+    var textboxcontainer = document.getElementById('textbox_container');
+    if (textboxcontainer.classList.contains('hidden')) {
+      textboxcontainer.classList.remove('hidden');
+    } else {
+      textboxcontainer.classList.add('hidden');
+    }
   }
   return (
     <main>
@@ -270,15 +268,12 @@ export function Blog() {
           surrounding area once I do. Keep posted for updates
           which should be recurring in the coming weeks. Thanks for joining me on this journey!</p>
         <p>
-          {/*<!--This is a placeholder for websocket communication between users for comments and likes-->*/}
-          <button className="btn btn-primary">Like</button>
-          <button id="open_comment_box" className="btn btn-primary">Comment</button>
+          <button id="open_comment_box" className="btn btn-primary" onClick={open_textbox}>Comment</button>
         </p>
         <div id="textbox_container" class="hidden">
           <textarea id="textbox" rows="4" cols="50"></textarea>
           <button className="btn btn-primary">Post</button>
         </div>
-        {open_textbox}
       </div>
       <div>
         <p>Posted: 3:39 PM, 10/4/2024</p>
@@ -291,15 +286,12 @@ export function Blog() {
           out a couple more things.
         </p>
         <p>
-          {/*<!--This is a placeholder for websocket communication between users for comments and likes-->*/}
-          <button className="btn btn-primary">Like</button>
-          <button className="btn btn-primary">Comment</button>
+          <button className="btn btn-primary" onClick={open_textbox}>Comment</button>
         </p>
         <div id="textbox_container" class="hidden">
           <textarea id="textbox" rows="4" cols="50"></textarea>
           <button className="btn btn-primary">Post</button>
         </div>
-        {open_textbox}
       </div>
     </main>
   )
