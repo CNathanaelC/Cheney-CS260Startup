@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { fetchWeatherApi } from 'openmeteo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css";
 
 export default function App() {
+  const [token, setToken] = useState(null);
   return (
     <body>
       <BrowserRouter>
@@ -39,8 +42,8 @@ export default function App() {
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/folklore" element={<Folklore />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/blog" element={<Blog setToken={setToken} />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/thelake" element={<TheLake />} />
         </Routes>
       </BrowserRouter>
@@ -81,7 +84,55 @@ export function Home() {
   )
 };
 
+export const WeatherComponent = ({ url }) => {
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        const response = await axios.get(url);
+        setWeather(response.data.current);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
+
+    fetchWeather();
+  }, [url]);
+
+  return (
+    <div className="weather-info">
+      {weather ? (
+        <>
+          <p>Temperature: {weather.temperature_2m}°F</p>
+          <p>Relative Humidity: {weather.relative_humidity_2m}%</p>
+          <p>Precipitation: {weather.precipitation} inches</p>
+          <p>Wind Speed: {weather.wind_speed_10m} mph</p>
+          <p>{weather.is_day ? 'Daytime' : 'Nighttime'}</p>
+        </>
+      ) : (
+        <p>Loading weather data...</p>
+      )}
+    </div>
+  );
+};
+
+
+
 export function Destinations() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const lakechelanurl = "https://api.open-meteo.com/v1/forecast?latitude=47.8707&longitude=-120.1929&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const sanjuanurl = "https://api.open-meteo.com/v1/forecast?latitude=48.5832&longitude=-122.968&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const olympicnpurl = "https://api.open-meteo.com/v1/forecast?latitude=47.8032&longitude=-123.6661&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const mountrainierurl = "https://api.open-meteo.com/v1/forecast?latitude=46.88&longitude=-121.7269&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const leaveworthurl = "https://api.open-meteo.com/v1/forecast?latitude=47.5962&longitude=-120.6615&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const northcascadesurl = "https://api.open-meteo.com/v1/forecast?latitude=48.8332&longitude=-121.3466&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const seattleurl = "https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,relative_humidity_2m,is_day,precipitation,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1"
+  const lakeurl = ""
+  const [weather, setWeather] = useState(null);
+
   return (
     <main>
       <h1 className="upper_centered_text">Destinations</h1>
@@ -98,6 +149,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="LakeChelanQL">Discover the Magic of Lake Chelan</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={lakechelanurl} />
         <p>
           Lake Chelan is the deepest lake in Washington State, reaching a maximum depth of 1,480 feet! Whether you
           indulge in the local wineries or hike about its majestic mountains, Lake Chelan is perfect for all ages
@@ -113,6 +166,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="SanJuanQL">Conquer the San Juan Islands</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={sanjuanurl} />
         <p>
           Nestled in the peaceful water of the Pacific Northwest, the San Juan islands are an artifact of Washington State.
           Tap into your inner pirate as you set sail and explore each island. You never know what you'll find: a quiet lagoon or a forest full of raccoons!
@@ -128,6 +183,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="OlympicNPQL">Explore the Wonders of Olympic National Park</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={olympicnpurl} />
         <p>
           Olympic National Park is a UNESCO World Heritage site, known for its diverse ecosystems ranging from lush rainforests to rugged coastlines.
           Whether you're an avid hiker or just looking to relax in nature, Olympic National Park offers something for everyone.
@@ -142,6 +199,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="MountRainierQL">Ascend the Majesty of Mount Rainier</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={mountrainierurl} />
         <p>
           Mount Rainier is an iconic symbol of Washington State, standing at 14,411 feet.
           This active stratovolcano is surrounded by subalpine wildflower meadows and ancient forests, making it a paradise for nature lovers and adventure seekers.
@@ -156,6 +215,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="LeavenworthQL">Experience the Charm of Leavenworth</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={leaveworthurl} />
         <p>
           Leavenworth is a Bavarian-style village nestled in the Cascade Mountains.
           Known for its festive atmosphere and stunning alpine scenery, Leavenworth is a year-round destination with activities for all ages.
@@ -170,6 +231,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="NorthCascadesQL">Unveil the Beauty of North Cascades National Park</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={northcascadesurl} />
         <p>
           North Cascades National Park is a hidden gem, offering rugged mountain landscapes, pristine alpine lakes, and abundant wildlife.
           It's a haven for outdoor enthusiasts looking to escape the crowds and immerse themselves in nature.
@@ -184,6 +247,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="SeattleQL">Dive into the Vibrancy of Seattle</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={seattleurl} />
         <p>
           Seattle, known as the Emerald City, is a bustling metropolis surrounded by water, mountains, and evergreen forests.
           It's a hub for technology, music, and culture, offering a diverse array of attractions and activities.
@@ -198,6 +263,8 @@ export function Destinations() {
       </div>
       <div>
         <h3 id="LakeQL" className="glitch">Skulchon Lake</h3>
+        <h4>Current Weather</h4>
+        <WeatherComponent url={lakeurl} />
         <p>
           A beautiful vista that I have recently come across. There is a nice small town nearby and some crazy history and lore.
           I'll talk more about it on the blog. So keep tabs on that as I hopefully hype up this new destination!
@@ -374,27 +441,61 @@ export function Blog() {
   )
 };
 
-export function Login() {
+
+export function Login({ setToken }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setToken(data.token);
+    } else {
+      alert(data.msg);
+    }
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/api/auth/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setToken(data.token);
+    } else {
+      alert(data.msg);
+    }
+  };
+
   return (
     <main>
       <center>
         <h2>Login</h2>
-        <form method="get" action="/">
+        <form>
           <div>
             <span>Username:</span>
-            <input type="text" placeholder="username" />
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="username" />
           </div>
           <div>
             <span>Password:</span>
-            <input type="password" placeholder="password" />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
           </div>
-          <button className="btn btn-primary" type="submit">Login</button>
-          <button className="btn btn-primary" type="submit">Create</button>
+          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
+          <button className="btn btn-primary" onClick={handleCreate}>Create</button>
         </form>
       </center>
     </main>
-  )
-};
+  );
+}
 
 
 export function TheLake() {
