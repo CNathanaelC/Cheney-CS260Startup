@@ -101,3 +101,6 @@ With this css deliverable, I added several stylized elements including backgroun
 ### React Deliverable
 With this React deliverable, I converted all the html documents to JSX and made login and comments mimic functionality.
 There was a complete overhaul on the application structure. The application was bundled using Vite. React was fully implemented. I made it use a React router to access the different pages. Custom React Hooks to add the semi-functionality to comments and some random cryptic messages to the gallery. I would add more effects, but I currently lack the knowledge and time to do so.
+
+### Service Deliverable
+With this Service deliverable,  I created an HTTP service using Node.js and Express, my frontend is served up using Express static middleware (comments on blogs), my frontend calls third party service endpoints (see weather information in Destinations), my backend provides service endpoints, my frontend calls your service endpoints using fetch (see comments on blogs).
