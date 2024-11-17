@@ -42,7 +42,7 @@ app.post('/api/auth/login', (req, res) => {
             const token = uuid.v4()
             res.json({ token });
         } else {
-            return res.status(400).json({ msg: 'Invalid credentials' });
+            return res.status(400).json({ msg: 'Invalid Credentials' });
         }
     }
 });
@@ -50,11 +50,10 @@ app.post('/api/auth/login', (req, res) => {
 app.post('/api/auth/create', (req, res) => {
     const { username, password } = req.body;
     if (username in users) {
-        if (users[username].password === password) {
-            const token = uuid.v4()
-            res.json({ token });
-        } else {
-            return res.status(400).json({ msg: 'Invalid credentials' });
-        }
+        return res.status(400).json({ msg: 'Account Exists' });
+    } else {
+        const token = uuid.v4()
+        users.push({ username: username, password: password, token: token });
+        res.json({ token });
     }
 });
