@@ -7,6 +7,13 @@ import "./style.css";
 
 export default function App() {
   const [token, setToken] = useState(null);
+  function isLoggedIn() {
+    if (token != null) {
+      return "Logout"
+    } else {
+      return "Login"
+    }
+  }
   return (
     <body>
       <BrowserRouter>
@@ -32,7 +39,7 @@ export default function App() {
                 <NavLink to="blog">Blog</NavLink>
               </button>
               <button className="btn btn-primary">
-                <NavLink to="login">Login</NavLink>
+                <NavLink to="login">{isLoggedIn}</NavLink>
               </button>
             </center>
           </nav>
@@ -356,8 +363,42 @@ export function Gallery() {
   )
 };
 
-
 export function Blog() {
+  const [comments, setComments] = useState({ 1: [], 2: [], 3: [] });
+  const [newComment, setNewComment] = useState({ 1: '', 2: '', 3: '' });
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      const postIds = [1, 2, 3];
+      const fetchedComments = {};
+      for (const postId of postIds) {
+        const response = await fetch('/api/comments/${postId}');
+        const data = await response.json();
+        fetchedComments[postId] = data;
+      }
+      setComments(fetchedComments);
+    };
+
+    fetchComments();
+  }, []);
+
+  const handleCommentChange = (postId, text) => {
+    setNewComment({ ...newComment, [postId]: text });
+  };
+
+  const handlePostComment = async (postId) => {
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ postId, text: newComment[postId] })
+    });
+    const data = await response.json();
+    setComments({ ...comments, [postId]: data });
+    setNewComment({ ...newComment, [postId]: '' });
+  };
+
   function open_textbox(reveal_id) {
     var textboxcontainer = document.getElementById(reveal_id);
     if (textboxcontainer.classList.contains('hidden')) {
@@ -366,6 +407,7 @@ export function Blog() {
       textboxcontainer.classList.add('hidden');
     }
   }
+
   return (
     <main>
       <center>
@@ -373,7 +415,7 @@ export function Blog() {
           <h1>Blog</h1>
         </div>
       </center>
-      <div>{/*<!--This section below is a placeholder for where blogs will be posted-->*/}
+      <div>
         <p>Posted: 11:19 AM, 9/27/2024</p>
         <p>Welcome to my blog! This is where I am going to starting posting some of my day-to-day experiences with
           hiking and exploring in various areas!
@@ -386,9 +428,13 @@ export function Blog() {
           <button id="open_comment_box" className="btn btn-primary" onClick={() => open_textbox("tbcont1")}>Comment</button>
         </p>
         <div id="tbcont1" className="hidden">
-          <textarea id="textbox" rows="4" cols="50"></textarea>
-          <button className="btn btn-primary">Post</button>
+          <textarea rows="4" cols="50" value={newComment[1]} onChange={(e) => handleCommentChange(1, e.target.value)}></textarea>
+          <button className="btn btn-primary" onClick={() => handlePostComment(1)}>Post</button>
         </div>
+        <h6>Comments:</h6>
+        <ul>
+          {comments[1].map((comment, index) => <li key={index}>{comment}</li>)}
+        </ul>
       </div>
       <div>
         <p>Posted: 3:39 PM, 10/4/2024</p>
@@ -404,9 +450,13 @@ export function Blog() {
           <button className="btn btn-primary" onClick={() => open_textbox("tbcont2")}>Comment</button>
         </p>
         <div id="tbcont2" className="hidden">
-          <textarea id="textbox" rows="4" cols="50"></textarea>
-          <button className="btn btn-primary">Post</button>
+          <textarea rows="4" cols="50" value={newComment[2]} onChange={(e) => handleCommentChange(2, e.target.value)}></textarea>
+          <button className="btn btn-primary" onClick={() => handlePostComment(2)}>Post</button>
         </div>
+        <h6>Comments:</h6>
+        <ul>
+          {comments[2].map((comment, index) => <li key={index}>{comment}</li>)}
+        </ul>
       </div>
       <div>
         <p>Posted: 6:33 PM, 11/9/2024</p>
@@ -433,17 +483,22 @@ export function Blog() {
           <button className="btn btn-primary" onClick={() => open_textbox("tbcont3")}>Comment</button>
         </p>
         <div id="tbcont3" className="hidden">
-          <textarea id="textbox" rows="4" cols="50"></textarea>
-          <button className="btn btn-primary">Post</button>
+          <textarea rows="4" cols="50" value={newComment[3]} onChange={(e) => handleCommentChange(3, e.target.value)}></textarea>
+          <button className="btn btn-primary" onClick={() => handlePostComment(3)}>Post</button>
         </div>
+        <h6>Comments:</h6>
+        <ul>
+          {comments[3].map((comment, index) => <li key={index}>{comment}</li>)}
+        </ul>
       </div>
     </main>
-  )
-};
+  );
+}
+
 
 
 export function Login({ setToken }) {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async (e) => {
@@ -451,7 +506,7 @@ export function Login({ setToken }) {
     const response = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     });
     const data = await response.json();
     if (response.ok) {
@@ -466,7 +521,7 @@ export function Login({ setToken }) {
     const response = await fetch('/api/auth/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ username, password })
     });
     const data = await response.json();
     if (response.ok) {
@@ -483,7 +538,7 @@ export function Login({ setToken }) {
         <form>
           <div>
             <span>Username:</span>
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="username" />
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
           </div>
           <div>
             <span>Password:</span>
