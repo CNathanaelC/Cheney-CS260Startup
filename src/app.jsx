@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Alert from './alert.jsx'
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import { fetchWeatherApi } from 'openmeteo';
@@ -497,37 +498,29 @@ export function Blog() {
 export function Login({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = async () => {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+  async function handleLoginCreate(endpoint) {
+    const response = await fetch(endpoint, {
+      method: 'post',
+      body: JSON.stringify({ userName: username, password: password }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
     });
+
     const data = await response.json();
-    if (response.ok) {
+    if (response.status !== 409) {
       setToken(data.token);
     } else {
-      alert(data.msg);
+      setError(`⚠ Error: ${data.msg}`);
     }
-  };
-
-  const handleCreate = async () => {
-    const response = await fetch('/api/auth/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-    const data = await response.json();
-    if (response.ok) {
-      setToken(data.token);
-    } else {
-      alert(data.msg);
-    }
-  };
+    props.history.push('/')
+  }
 
   return (
     <main>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <center>
         <h2>Login</h2>
         <form>
@@ -539,14 +532,25 @@ export function Login({ setToken }) {
             <span>Password:</span>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
           </div>
-          <button className="btn btn-primary" onClick={handleLogin}>Login</button>
-          <button className="btn btn-primary" onClick={handleCreate}>Create</button>
+          <button className="btn btn-primary" onClick={() => handleLoginCreate(`/api/auth/login`)}>Login</button>
+          <button className="btn btn-primary" onClick={() => handleLoginCreate(`/api/auth/create`)}>Create</button>
         </form>
       </center>
+      <div className="App">
+        <Alert type="error" message="Error" />
+        <Alert type="success">
+          <p>Success message</p>
+        </Alert>
+        <Alert type="primary">
+          <h4>primary message</h4>
+        </Alert>
+        <Alert type="secondary">
+          <span>secondary message</span>
+        </Alert>
+      </div>
     </main>
   );
 }
-
 
 export function TheLake() {
   return (
