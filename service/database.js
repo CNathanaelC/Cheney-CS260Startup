@@ -1,14 +1,22 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const config = require('./dbConfig.json');
-const uuid = require('uuid')
-const bcrypt = require('bcrypt')
+const uri = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/`;
+const bcrypt = require('bcrypt');
 
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
 const db = client.db('startup');
 const userCollection = db.collection('user');
 const commentCollection = db.collection('comment');
-//TODO::REMOVE THIS BEFORE DEPLOYING
+
+
 async function clearAll() {
   const result = await userCollection.deleteMany({});
   console.log(`Deleted ${result.deletedCount} documents from the collection`);
@@ -16,26 +24,46 @@ async function clearAll() {
   console.log(`Deleted ${result1.deletedCount} documents from the collection`);
 }
 
-//END OF REMOVE
-
-function getUser(username) {
-  return userCollection.findOne({ userName: username })
+async function getUser(username) {
+  console.log('searching for user...');
+  try {
+    return await userCollection.findOne({ userName: username });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-async function createUser(username, password) {
-  const passwordHash = await bcrypt.hash(password, 10);
-  const user = {
-    userName: username,
-    password: passwordHash,
-    token: uuid.v4()
-  };
-  await userCollection.insertOne(user)
-  return user;
+async function userExists(userName) {
+  console.log('verifying user existence...');
+  try {
+    const user = await userCollection.findOne({ userName: userName });
+    return user !== null;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}
+
+async function createUser(username, password, token) {
+  console.log('creating user...');
+  try {
+    const passwordHash = await bcrypt.hash(password, 10);
+    const user = {
+      userName: username,
+      password: passwordHash,
+      token: token
+    };
+    await userCollection.insertOne(user);
+    return user;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 
 module.exports = {
   getUser,
   createUser,
+  userExists,
   clearAll,
 };

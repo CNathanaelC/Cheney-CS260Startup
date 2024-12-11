@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import Alert from './alert.jsx'
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { godToken, setGodToken } from '../service/godToken';
 import { fetchWeatherApi } from 'openmeteo';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./style.css";
 
 export default function App() {
-  const [token, setToken] = useState(null);
+  const [tologin, setToLogin] = useState('login')
   function isLoggedIn() {
-    if (token != null) {
-      return "Logout"
-    } else {
+    if (godToken == 'unverified') {
+      setToLogin('login')
       return "Login"
+    } else {
+      setToLogin('logout')
+      return "Logout"
     }
   }
   return (
@@ -40,7 +42,7 @@ export default function App() {
                 <NavLink to="blog">Blog</NavLink>
               </button>
               <button className="btn btn-primary">
-                <NavLink to="login">{isLoggedIn}</NavLink>
+                <NavLink to={tologin}>{() => isLoggedIn()}</NavLink>
               </button>
             </center>
           </nav>
@@ -50,9 +52,10 @@ export default function App() {
           <Route path="/destinations" element={<Destinations />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/folklore" element={<Folklore />} />
-          <Route path="/blog" element={<Blog setToken={setToken} />} />
-          <Route path="/login" element={<Login setToken={setToken} />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/thelake" element={<TheLake />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </BrowserRouter>
       <footer>
@@ -405,151 +408,175 @@ export function Blog() {
       textboxcontainer.classList.add('hidden');
     }
   }
-
-  return (
-    <main>
-      <center>
+  if (godToken == 'unverified') {
+    return (
+      <main>
+        <center>
+          <div>
+            <h1>Blog</h1>
+          </div>
+        </center>
+        <h2>
+          <center>
+            Sign in to participate
+          </center>
+        </h2>
+      </main>
+    );
+  } else {
+    return (
+      <main>
+        <center>
+          <div>
+            <h1>Blog</h1>
+          </div>
+        </center>
         <div>
-          <h1>Blog</h1>
+          <p>Posted: 11:19 AM, 9/27/2024</p>
+          <p>Welcome to my blog! This is where I am going to starting posting some of my day-to-day experiences with
+            hiking and exploring in various areas!
+            I won't reveal where I am going exploring first since I'm not sure I want to dox it quite yet, since its
+            pretty secluded and out of the
+            the eyes of the public. However, I can't wait for each of you to experience this wonderful hike and its
+            surrounding area once I do. Keep posted for updates
+            which should be recurring in the coming weeks. Thanks for joining me on this journey!</p>
+          <p>
+            <button id="open_comment_box" className="btn btn-primary" onClick={() => open_textbox("tbcont1")}>Comment</button>
+          </p>
+          <div id="tbcont1" className="hidden">
+            <textarea rows="4" cols="50" value={newComment[1]} onChange={(e) => handleCommentChange(1, e.target.value)}></textarea>
+            <button className="btn btn-primary" onClick={() => handlePostComment(1)}>Post</button>
+          </div>
+          <h6>Comments:</h6>
+          <ul>
+            {comments[1].map((comment, index) => <li key={index}>{comment}</li>)}
+          </ul>
         </div>
-      </center>
-      <div>
-        <p>Posted: 11:19 AM, 9/27/2024</p>
-        <p>Welcome to my blog! This is where I am going to starting posting some of my day-to-day experiences with
-          hiking and exploring in various areas!
-          I won't reveal where I am going exploring first since I'm not sure I want to dox it quite yet, since its
-          pretty secluded and out of the
-          the eyes of the public. However, I can't wait for each of you to experience this wonderful hike and its
-          surrounding area once I do. Keep posted for updates
-          which should be recurring in the coming weeks. Thanks for joining me on this journey!</p>
-        <p>
-          <button id="open_comment_box" className="btn btn-primary" onClick={() => open_textbox("tbcont1")}>Comment</button>
-        </p>
-        <div id="tbcont1" className="hidden">
-          <textarea rows="4" cols="50" value={newComment[1]} onChange={(e) => handleCommentChange(1, e.target.value)}></textarea>
-          <button className="btn btn-primary" onClick={() => handlePostComment(1)}>Post</button>
+        <div>
+          <p>Posted: 3:39 PM, 10/4/2024</p>
+          <p>
+            After a couple preliminary searches for the location, it seems the internet doesn't even know where this
+            is, so I'll go ahead and share it. For this season
+            of the blog, I will traveling around Skulchon Lake and its associated town. I know I said that I would
+            be
+            updating sooner, but it looks like I need to figure
+            out a couple more things.
+          </p>
+          <p>
+            <button className="btn btn-primary" onClick={() => open_textbox("tbcont2")}>Comment</button>
+          </p>
+          <div id="tbcont2" className="hidden">
+            <textarea rows="4" cols="50" value={newComment[2]} onChange={(e) => handleCommentChange(2, e.target.value)}></textarea>
+            <button className="btn btn-primary" onClick={() => handlePostComment(2)}>Post</button>
+          </div>
+          <h6>Comments:</h6>
+          <ul>
+            {comments[2].map((comment, index) => <li key={index}>{comment}</li>)}
+          </ul>
         </div>
-        <h6>Comments:</h6>
-        <ul>
-          {comments[1].map((comment, index) => <li key={index}>{comment}</li>)}
-        </ul>
-      </div>
-      <div>
-        <p>Posted: 3:39 PM, 10/4/2024</p>
-        <p>
-          After a couple preliminary searches for the location, it seems the internet doesn't even know where this
-          is, so I'll go ahead and share it. For this season
-          of the blog, I will traveling around Skulchon Lake and its associated town. I know I said that I would
-          be
-          updating sooner, but it looks like I need to figure
-          out a couple more things.
-        </p>
-        <p>
-          <button className="btn btn-primary" onClick={() => open_textbox("tbcont2")}>Comment</button>
-        </p>
-        <div id="tbcont2" className="hidden">
-          <textarea rows="4" cols="50" value={newComment[2]} onChange={(e) => handleCommentChange(2, e.target.value)}></textarea>
-          <button className="btn btn-primary" onClick={() => handlePostComment(2)}>Post</button>
+        <div>
+          <p>Posted: 6:33 PM, 11/9/2024</p>
+          <p>
+            Sorry, it's been a while since I last posted. This site is honestly barely functional, but it's a work in
+            progress that I want to continue to work on. Well, I finally traveled to Skulchon. In classic Washingtonian fashion,
+            the locals are hesitant to interact with others. Perhaps I'm being too harsh. I've had plenty of positive, friendly interactions
+            with people in Olympia, Bellevue, and Leavenworth. Although, the caution of Skulchon residents is understandable given their history.
+            It all goes back to the early 1900's, when about twenty people from their community got involved in a cult! I read a couple interviews
+            published in old editions of their local newspaper and most family members and friends of those who were part of the cult had no idea of
+            their involvement. Some members of the cult were even prominent parts of the community: the mayor, librarian, and several police officers.
+            The story goes, a series of drownings suddenly happening in a short span of time--these were all ruled as suicides/accidents. One officer,
+            John Salas wasn't having it. Single handedly, on the day of a prominent festival, Officer Salas confronted the cult. Little is known about
+            this, but the resulting conflict resulted in the death of all the people present. John Salas died of strangulation, his daughter, Matika Salas
+            died by suicide by gunshot, six of the cultists died by gunshot, and the other thirteen died by suicidal drowning. The earlier drownings were
+            pinned on the cult--determined to be as a result of some kind of brainwashing.
+          </p>
+          <p>
+            I know that was a lot of exposition, but I thought it was fascinating that such a small, obscure town has such a morbidly fascinating history. After
+            too much time spent at the library, I think I'm going to go on my adventure for the day: hiking Mount Shuulal. I'll be sure to update you all as soon
+            as possible.
+          </p>
+          <p>
+            <button className="btn btn-primary" onClick={() => open_textbox("tbcont3")}>Comment</button>
+          </p>
+          <div id="tbcont3" className="hidden">
+            <textarea rows="4" cols="50" value={newComment[3]} onChange={(e) => handleCommentChange(3, e.target.value)}></textarea>
+            <button className="btn btn-primary" onClick={() => handlePostComment(3)}>Post</button>
+          </div>
+          <h6>Comments:</h6>
+          <ul>
+            {comments[3].map((comment, index) => <li key={index}>{comment}</li>)}
+          </ul>
         </div>
-        <h6>Comments:</h6>
-        <ul>
-          {comments[2].map((comment, index) => <li key={index}>{comment}</li>)}
-        </ul>
-      </div>
-      <div>
-        <p>Posted: 6:33 PM, 11/9/2024</p>
-        <p>
-          Sorry, it's been a while since I last posted. This site is honestly barely functional, but it's a work in
-          progress that I want to continue to work on. Well, I finally traveled to Skulchon. In classic Washingtonian fashion,
-          the locals are hesitant to interact with others. Perhaps I'm being too harsh. I've had plenty of positive, friendly interactions
-          with people in Olympia, Bellevue, and Leavenworth. Although, the caution of Skulchon residents is understandable given their history.
-          It all goes back to the early 1900's, when about twenty people from their community got involved in a cult! I read a couple interviews
-          published in old editions of their local newspaper and most family members and friends of those who were part of the cult had no idea of
-          their involvement. Some members of the cult were even prominent parts of the community: the mayor, librarian, and several police officers.
-          The story goes, a series of drownings suddenly happening in a short span of time--these were all ruled as suicides/accidents. One officer,
-          John Salas wasn't having it. Single handedly, on the day of a prominent festival, Officer Salas confronted the cult. Little is known about
-          this, but the resulting conflict resulted in the death of all the people present. John Salas died of strangulation, his daughter, Matika Salas
-          died by suicide by gunshot, six of the cultists died by gunshot, and the other thirteen died by suicidal drowning. The earlier drownings were
-          pinned on the cult--determined to be as a result of some kind of brainwashing.
-        </p>
-        <p>
-          I know that was a lot of exposition, but I thought it was fascinating that such a small, obscure town has such a morbidly fascinating history. After
-          too much time spent at the library, I think I'm going to go on my adventure for the day: hiking Mount Shuulal. I'll be sure to update you all as soon
-          as possible.
-        </p>
-        <p>
-          <button className="btn btn-primary" onClick={() => open_textbox("tbcont3")}>Comment</button>
-        </p>
-        <div id="tbcont3" className="hidden">
-          <textarea rows="4" cols="50" value={newComment[3]} onChange={(e) => handleCommentChange(3, e.target.value)}></textarea>
-          <button className="btn btn-primary" onClick={() => handlePostComment(3)}>Post</button>
-        </div>
-        <h6>Comments:</h6>
-        <ul>
-          {comments[3].map((comment, index) => <li key={index}>{comment}</li>)}
-        </ul>
-      </div>
-    </main>
-  );
+      </main>
+    );
+  }
 }
 
 
 
-export function Login({ setToken }) {
+export function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  async function handleLoginCreate(endpoint) {
-    const response = await fetch(endpoint, {
-      method: 'post',
-      body: JSON.stringify({ userName: username, password: password }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      },
-    });
-
-    const data = await response.json();
-    if (response.status !== 409) {
-      setToken(data.token);
-    } else {
-      setError(`⚠ Error: ${data.msg}`);
-    }
-    props.history.push('/')
+  function getOutOfHere() {
+    setGodToken('unverified')
+    navigate('/login')
   }
 
-  return (
-    <main>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <center>
-        <h2>Login</h2>
-        <form>
-          <div>
-            <span>Username:</span>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
-          </div>
-          <div>
-            <span>Password:</span>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
-          </div>
-          <button className="btn btn-primary" onClick={() => handleLoginCreate(`/api/auth/login`)}>Login</button>
-          <button className="btn btn-primary" onClick={() => handleLoginCreate(`/api/auth/create`)}>Create</button>
-        </form>
-      </center>
-      <div className="App">
-        <Alert type="error" message="Error" />
-        <Alert type="success">
-          <p>Success message</p>
-        </Alert>
-        <Alert type="primary">
-          <h4>primary message</h4>
-        </Alert>
-        <Alert type="secondary">
-          <span>secondary message</span>
-        </Alert>
-      </div>
-    </main>
-  );
+  async function handleLoginCreate(endpoint, event) {
+    event.preventDefault();
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      body: JSON.stringify({ userName: username, password: password }),
+      headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+    });
+    if (response.ok) {
+      const responseData = await response.json();
+      setGodToken(responseData.token);
+      navigate('/');
+    } else {
+      alert('Create Failure');
+      if (response.status === 409) {
+        alert('User already exists');
+      } else {
+        alert('Unauthorized');
+      }
+    }
+  }
+
+  if (godToken != 'unverified') {
+    return (
+      <main>
+        <div></div>
+        <center>
+          <h2>Logout</h2>
+          <div></div>
+          <button className="btn btn-primary" onClick={() => getOutOfHere()}>Yes?</button>
+        </center>
+      </main >
+    );
+  } else {
+    return (
+      <main>
+        <center>
+          <h2>Login</h2>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <span>Username:</span>
+              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
+            </div>
+            <div>
+              <span>Password:</span>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
+            </div>
+            <button className="btn btn-primary" onClick={(e) => handleLoginCreate('/api/auth/login', e)}>Login</button>
+            <button className="btn btn-primary" onClick={(e) => handleLoginCreate('/api/auth/create', e)}>Create</button>
+          </form>
+        </center>
+      </main>
+    );
+  }
 }
 
 export function TheLake() {
@@ -863,6 +890,24 @@ export function Folklore() {
         </p>
         <a href="thelake" className="glitch">Learn more</a>
       </div>
+    </main>
+  );
+}
+
+export function Logout() {
+  const navigate = useNavigate();
+  function getOutOfHere() {
+    setGodToken('unverified')
+    navigate('/login')
+  }
+  return (
+    <main>
+      <div></div>
+      <center>
+        <h2>Logout</h2>
+        <div></div>
+        <button onClick={() => getOutOfHere()} className="btn btn-primary">Yes?</button>
+      </center>
     </main>
   );
 }
