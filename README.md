@@ -106,3 +106,4 @@ There was a complete overhaul on the application structure. The application was 
 With this Service deliverable,  I created an HTTP service using Node.js and Express, my frontend is served up using Express static middleware (comments on blogs), my frontend calls third party service endpoints (see weather information in Destinations), my backend provides service endpoints, my frontend calls your service endpoints using fetch (see comments on blogs).
 
 ### Login Deliverable
+Through arduous struggle I added in login support. This login supports new user registration, existing user authentication and logout, stores application data in MongoDB, stores and retrieves credentials in MongoDB, and restricts application functionality (access to the blog page) based upon authentication.
