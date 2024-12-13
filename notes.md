@@ -430,3 +430,173 @@ console.log('taco');
 ##### Answer:
 ski taco banana fish
 
+Final Questions:
+Sure! Let's go through each question one by one:
+
+### 1. Default Ports
+- **HTTP**: Port 80
+- **HTTPS**: Port 443
+- **SSH**: Port 22
+
+### 2. HTTP Status Codes
+- **300 Range**: Redirection (e.g., 301 Moved Permanently, 302 Found)
+- **400 Range**: Client Errors (e.g., 404 Not Found, 401 Unauthorized)
+- **500 Range**: Server Errors (e.g., 500 Internal Server Error, 502 Bad Gateway)
+
+### 3. HTTP Header `Content-Type`
+The `Content-Type` header allows you to specify the media type of the resource. For example:
+- `Content-Type: application/json` indicates that the body content is in JSON format.
+- `Content-Type: text/html` indicates that the body content is in HTML format.
+
+### 4. Cookies
+- **Secure Cookie**: Can only be sent over HTTPS.
+- **Http-Only Cookie**: Cannot be accessed via JavaScript, providing protection against XSS attacks.
+- **Same-Site Cookie**: Restricts how cookies are sent with cross-site requests, providing protection against CSRF attacks.
+  - [More details on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+
+### 5. Express Middleware Console Output
+Assuming the following Express middleware:
+```javascript
+app.use((req, res, next) => {
+  console.log(req.method, req.url);
+  next();
+});
+```
+For an HTTP GET request with a URL path of `/api/document`, the console.log output would be:
+```
+GET /api/document
+```
+
+### 6. Fetch Return
+Given the following Express service code:
+```javascript
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Hello, World!' });
+});
+```
+And the following front-end JavaScript:
+```javascript
+fetch('/api/data')
+  .then(response => response.json())
+  .then(data => console.log(data));
+```
+The console.log output would be:
+```
+{ message: 'Hello, World!' }
+```
+
+### 7. MongoDB Query
+Given the MongoDB query:
+```javascript
+db.collection('users').find({ name: 'Mark' });
+```
+This query selects all documents in the `users` collection where the `name` field is `Mark`.
+
+### 8. Storing User Passwords
+User passwords should be stored securely using hashing algorithms like bcrypt. Example:
+```javascript
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const plainPassword = 'userPassword';
+
+bcrypt.hash(plainPassword, saltRounds, (err, hash) => {
+  if (err) throw err;
+  // Store hash in your database
+});
+```
+
+### 9. WebSocket Console Log
+Assuming the following Node.js WebSocket code in the back end:
+```javascript
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on('connection', ws => {
+  ws.send('Hello Client');
+});
+```
+And the following front-end WebSocket code:
+```javascript
+const socket = new WebSocket('ws://localhost:8080');
+
+socket.onmessage = (event) => {
+  console.log(event.data);
+};
+```
+The front-end console log would be:
+```
+Hello Client
+```
+
+### 10. WebSocket Protocol
+The WebSocket protocol is intended to provide full-duplex communication channels over a single TCP connection.
+
+### 11. Acronyms
+- **JSX**: JavaScript XML
+- **JS**: JavaScript
+- **AWS**: Amazon Web Services
+- **NPM**: Node Package Manager
+- **NVM**: Node Version Manager
+
+### 12. React Component Text Content
+Assuming an HTML document with a body element, the following React component:
+```javascript
+const MyComponent = ({ text }) => <div>{text}</div>;
+```
+If used as `<MyComponent text="Hello, World!" />`, it will generate:
+```
+<div>Hello, World!</div>
+```
+
+### 13. React Components Including Each Other
+Given a set of React components that include each other, the generated output will depend on the structure and props passed. For example:
+```javascript
+const Parent = () => <Child />;
+const Child = () => <div>Child Component</div>;
+```
+The output will be:
+```
+<div>Child Component</div>
+```
+
+### 14. React Component with `React.useState`
+A React component with `React.useState` manages state within the component. Example:
+```javascript
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+```
+
+### 15. React Hooks
+React Hooks are used to manage state and side effects in functional components. Examples include `useState`, `useEffect`, `useContext`, `useRef`, etc.
+
+### 16. Specific Hooks
+- **State Hook (`useState`)**: Manages state in functional components.
+- **Context Hook (`useContext`)**: Accesses context values.
+- **Ref Hook (`useRef`)**: Creates a mutable object that persists across renders.
+- **Effect Hook (`useEffect`)**: Performs side effects in functional components.
+- **Performance Hook (`useMemo`, `useCallback`)**: Optimizes performance by memoizing values and functions.
+
+### 17. React Router Code
+Given React Router code, true statements will depend on the specific code provided. Generally, React Router is used for client-side routing in React applications.
+
+### 18. `package.json` File
+The `package.json` file contains metadata about the project and its dependencies, scripts, and other configurations.
+
+### 19. `fetch` Function
+The `fetch` function is used to make network requests and returns a promise that resolves to the response.
+
+### 20. Node.js
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine, used for building server-side applications.
+
+### 21. `pm2`
+`pm2` is a process manager for Node.js applications that allows you to keep applications running, manage logs, and monitor performance.
+
+### 22. Vite
+Vite is a build tool that provides a fast development environment and optimized build process for modern web applications.
