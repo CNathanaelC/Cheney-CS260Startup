@@ -24,7 +24,6 @@ id = "id"
 What I wanted to do with text changing is less with CSS animation than it is with javascript
 
 Midterm Questions
-Sure, let's dive into each question with detailed explanations and examples where necessary.
 
 ### 1. What does the link element do?
 The `<link>` element in HTML is used to define a relationship between the current document and an external resource. It is most commonly used to link to external stylesheets.
@@ -464,7 +463,6 @@ The `Content-Type` header allows you to specify the media type of the resource. 
 - Content-Type	text/html; charset=utf-8	The format of the content being sent. These are described using standard MIME types. (MIME types are structures like the following: "text/plain" and "application/json"
 
 ### 4. Cookies
-Sure! Here's a summary focused on the functionalities of "Secure cookie," "Http-only cookie," and "Same-site cookie":
 
 ### **Secure Cookie**
 A **Secure cookie** is a type of cookie that is only sent to the server with an encrypted request over the HTTPS protocol. This means it is never sent with unsecured HTTP requests, which helps protect the cookie from being accessed by man-in-the-middle attackers. However, it does not prevent access to the cookie from the client side, such as through JavaScript, unless the HttpOnly attribute is also set.
