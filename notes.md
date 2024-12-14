@@ -431,7 +431,6 @@ console.log('taco');
 ski taco banana fish
 
 Final Questions:
-Sure! Let's go through each question one by one:
 
 ### 1. Default Ports
 - **HTTP**: Port 80
@@ -439,20 +438,47 @@ Sure! Let's go through each question one by one:
 - **SSH**: Port 22
 
 ### 2. HTTP Status Codes
-- **300 Range**: Redirection (e.g., 301 Moved Permanently, 302 Found)
-- **400 Range**: Client Errors (e.g., 404 Not Found, 401 Unauthorized)
-- **500 Range**: Server Errors (e.g., 500 Internal Server Error, 502 Bad Gateway)
+Code	Text	Meaning
+100	Continue	The service is working on the request
+200	Success	The requested resource was found and returned as appropriate.
+201	Created	The request was successful and a new resource was created.
+204	No Content	The request was successful but no resource is returned.
+304	Not Modified	The cached version of the resource is still valid.
+307	Permanent redirect	The resource is no longer at the requested location. The new location is specified in the response location header.
+308	Temporary redirect	The resource is temporarily located at a different location. The temporary location is specified in the response location header.
+400	Bad request	The request was malformed or invalid.
+401	Unauthorized	The request did not provide a valid authentication token.
+403	Forbidden	The provided authentication token is not authorized for the resource.
+404	Not found	An unknown resource was requested.
+408	Request timeout	The request takes too long.
+409	Conflict	The provided resource represents an out of date version of the resource.
+418	I'm a teapot	The service refuses to brew coffee in a teapot.
+429	Too many requests	The client is making too many requests in too short of a time period.
+500	Internal server error	The server failed to properly process the request.
+503	Service unavailable	The server is temporarily down. The client should try again with an exponential back off.
 
 ### 3. HTTP Header `Content-Type`
 The `Content-Type` header allows you to specify the media type of the resource. For example:
 - `Content-Type: application/json` indicates that the body content is in JSON format.
 - `Content-Type: text/html` indicates that the body content is in HTML format.
+- Content-Type	text/html; charset=utf-8	The format of the content being sent. These are described using standard MIME types. (MIME types are structures like the following: "text/plain" and "application/json"
 
 ### 4. Cookies
-- **Secure Cookie**: Can only be sent over HTTPS.
-- **Http-Only Cookie**: Cannot be accessed via JavaScript, providing protection against XSS attacks.
-- **Same-Site Cookie**: Restricts how cookies are sent with cross-site requests, providing protection against CSRF attacks.
-  - [More details on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+Sure! Here's a summary focused on the functionalities of "Secure cookie," "Http-only cookie," and "Same-site cookie":
+
+### **Secure Cookie**
+A **Secure cookie** is a type of cookie that is only sent to the server with an encrypted request over the HTTPS protocol. This means it is never sent with unsecured HTTP requests, which helps protect the cookie from being accessed by man-in-the-middle attackers. However, it does not prevent access to the cookie from the client side, such as through JavaScript, unless the HttpOnly attribute is also set.
+
+### **Http-Only Cookie**
+An **Http-only cookie** is a cookie that cannot be accessed via JavaScript, providing an additional layer of security. This attribute helps mitigate cross-site scripting (XSS) attacks by ensuring that the cookie is only sent in HTTP requests to the server and cannot be manipulated through client-side scripts.
+
+### **Same-Site Cookie**
+A **Same-site cookie** is a cookie that restricts how cookies are sent with cross-site requests, providing protection against cross-site request forgery (CSRF) attacks. The SameSite attribute can take three values:
+- **Strict**: The cookie is only sent in requests originating from the same site.
+- **Lax**: The cookie is sent with top-level navigations and is not sent with cross-site subrequests (e.g., loading images or iframes).
+- **None**: The cookie is sent with both cross-site and same-site requests, but requires the Secure attribute to be set.
+
+These attributes help enhance the security and privacy of cookies by controlling their accessibility and scope.
 
 ### 5. Express Middleware Console Output
 Assuming the following Express middleware:
@@ -470,19 +496,34 @@ GET /api/document
 ### 6. Fetch Return
 Given the following Express service code:
 ```javascript
-app.get('/api/data', (req, res) => {
-  res.json({ message: 'Hello, World!' });
-});
+fetch('https://quote.cs260.click')
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
 ```
-And the following front-end JavaScript:
-```javascript
-fetch('/api/data')
-  .then(response => response.json())
-  .then(data => console.log(data));
 ```
-The console.log output would be:
+{
+  author: 'Kyle Simpson',
+  quote: "There's nothing more permanent than a temporary hack."
+}
 ```
-{ message: 'Hello, World!' }
+```
+fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    title: 'test title',
+    body: 'test body',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.json())
+  .then((jsonResponse) => {
+    console.log(jsonResponse);
+  });
 ```
 
 ### 7. MongoDB Query
@@ -581,7 +622,7 @@ React Hooks are used to manage state and side effects in functional components. 
 - **Context Hook (`useContext`)**: Accesses context values.
 - **Ref Hook (`useRef`)**: Creates a mutable object that persists across renders.
 - **Effect Hook (`useEffect`)**: Performs side effects in functional components.
-- **Performance Hook (`useMemo`, `useCallback`)**: Optimizes performance by memoizing values and functions.
+- **Performance Hook (`useMemo`, `useCallback`)**: Optimizes performance by memorizing values and functions.
 
 ### 17. React Router Code
 Given React Router code, true statements will depend on the specific code provided. Generally, React Router is used for client-side routing in React applications.
@@ -594,9 +635,91 @@ The `fetch` function is used to make network requests and returns a promise that
 
 ### 20. Node.js
 Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine, used for building server-side applications.
+Node.js is an open-source, cross-platform JavaScript runtime environment that allows you to run JavaScript on the server side. It uses the V8 JavaScript engine, which is the core of Google Chrome, outside of the browser. This makes Node.js highly performant and suitable for building scalable network applications.
+
+### Key Features of Node.js:
+1. **Event-Driven Architecture**: Node.js uses an event-driven, non-blocking I/O model, which makes it lightweight and efficient.
+2. **Single-Threaded**: Despite being single-threaded, Node.js can handle many connections concurrently thanks to its event loop.
+3. **Built-in Modules**: Node.js comes with a set of built-in modules that you can use without any additional installation. For example, the `http` module allows you to create an HTTP server.
+4. **NPM (Node Package Manager)**: Node.js includes NPM, which is the largest ecosystem of open-source libraries in the world.
+
+### Example Usage:
+Here's a simple example of creating an HTTP server using Node.js:
+```javascript
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello Node.js!</h1>');
+  res.end();
+});
+
+server.listen(8080, () => {
+  console.log('Web service listening on port 8080');
+});
+```
+This code sets up a basic HTTP server that listens on port 8080 and responds with "Hello Node.js!" to any incoming requests.
+
+### Debugging and Development:
+Node.js supports debugging and development tools, such as the ability to set breakpoints and step through code using VS Code. You can also use the `--watch` parameter to automatically restart Node.js when code changes are detected.
+
+For more detailed information, you can refer to the [official Node.js documentation](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs).
+
 
 ### 21. `pm2`
 `pm2` is a process manager for Node.js applications that allows you to keep applications running, manage logs, and monitor performance.
 
+### **PM2 Overview**
+PM2 (Process Manager 2) is a daemon process manager that helps keep your Node.js applications running continuously. It ensures that your web services remain active even after a system reboot or console closure.
+
+### **Key Features and Commands**
+- **Listing Processes**: `pm2 ls` lists all hosted Node.js processes.
+- **Monitoring**: `pm2 monit` provides a visual monitor for processes.
+- **Starting Processes**: `pm2 start index.js -n [name]` starts a new process with a specified name.
+- **Stopping Processes**: `pm2 stop [name]` stops a specific process.
+- **Restarting Processes**: `pm2 restart [name]` restarts a specific process.
+- **Deleting Processes**: `pm2 delete [name]` removes a process from being hosted.
+- **Saving Processes**: `pm2 save` saves the current processes across reboots.
+- **Automatic Reload**: `pm2 start env.js --watch --ignore-watch="node_modules"` automatically reloads the service when changes are detected.
+
+### **Setting Up a New Web Service**
+1. **Modify Caddyfile**: Add a rule to direct requests for a new subdomain to a specific port.
+2. **Create Web Service**: Copy an existing service directory and modify it for the new service.
+3. **Configure PM2**: Use PM2 to host the new web service, ensuring it runs continuously.
+
+### **Example Commands**
+- **Start a Service**: `pm2 start index.js -n tacos -- 5000`
+- **List Services**: `pm2 ls`
+- **Restart Caddy**: `sudo service caddy restart`
+
+PM2 is already installed on the production server as part of the AWS AMI, and deployment scripts automatically configure PM2 to manage web services. However, if issues arise, these commands can help manage and troubleshoot the services.
+
 ### 22. Vite
 Vite is a build tool that provides a fast development environment and optimized build process for modern web applications.
+
+### **Vite Overview**
+Vite is a modern build tool that provides a fast development environment and optimized build process for web applications. It supports JSX, TypeScript, and various CSS flavors, making it an excellent choice for React-based projects.
+
+### **Getting Started with Vite**
+To create a new React-based web application using Vite, follow these steps:
+1. Open your console and run the following commands:
+   ```bash
+   npm create vite@latest demoVite -- --template react
+   cd demoVite
+   npm install
+   npm run dev
+   ```
+2. This will create a new web application in the `demoVite` directory, download the required third-party packages, and start up the application using a local HTTP debugging server.
+
+### **Project Structure**
+Vite generates a project with the following key files:
+- **index.html**: The primary page for the application, starting point to load all JSX components.
+- **package.json**: Defines package dependencies and script commands.
+- **vite.config.js**: Configuration settings for Vite, specifically for React development.
+- **main.jsx**: Entry point for code execution, loading the `App` component.
+- **App.jsx**: Top-level application component, implementing the click counter.
+- **CSS Files**: `index.css` for the entire application and `App.css` for the top-level component.
+
+### **Building and Deploying**
+- **Development**: Run `npm run dev` to bundle the code to a temporary directory and start the Vite debug HTTP server.
+- **Production**: Run `npm run build` to create a production-ready version of the application in the `dist` directory. This process includes transpiling, minifying, and injecting the proper JavaScript.
